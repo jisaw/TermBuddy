@@ -29,7 +29,7 @@ type Cat struct {
 func (self Dog) setDefaults(name, breed string) Dog{
 	self.Name = name
 	self.Breed = breed
-	self.Level = 0
+	self.Level = 1
 	self.Xp = 0
 	self.Age = 0
 	self.Happiness = 10
@@ -39,7 +39,7 @@ func (self Dog) setDefaults(name, breed string) Dog{
 
 func (self Cat) setDefaults(name string) Cat{
 	self.Name = name
-	self.Level = 0
+	self.Level = 1
 	self.Xp = 0
 	self.Age = 0
 	self.Happiness = 10
@@ -65,7 +65,7 @@ func startGame () {
 }
 
 func createDog() {
-	fmt.Println("\n\nYou chose a Dog! Now its time to choose name and breed!")
+	fmt.Println("\n\nYou chose a Dog! Now its time to choose a name and breed!")
 	fmt.Print("\n\nWhat would you like to name your dog? >>")
 	name, err := reader.ReadString('\n')
 	if err != nil {
@@ -79,11 +79,20 @@ func createDog() {
 	}
 	dog := Dog{}
 	dog = dog.setDefaults(name, breed)
-	fmt.Printf("\n\nNew Dog\nName: %s\nBreed: %sAge: %d\n", dog.Name, dog.Breed, dog.Age)
+	fmt.Printf("\n\nNew Dog\nName: %s\nBreed: %sAge: %d\nLevel: %d\nHappiness: %d", dog.Name, dog.Breed, dog.Age, dog.Level, dog.Happiness)
 }
 
 func createCat() {
-
+		fmt.Println("\n\nYou chose a Cat! Now its time to choose a name!")
+	fmt.Print("\n\nWhat would you like to name your cat? >>")
+	name, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println(err)
+	}
+	name = strings.TrimSpace(name)
+	cat := Cat{}
+	cat = cat.setDefaults(name)
+	fmt.Printf("\n\nNew Cat\nName: %s\nAge: %d\nLevel: %d\nHappiness: %d\n", cat.Name, cat.Age, cat.Level, cat.Happiness)
 }
 
 func usersTurn () {
